@@ -24,10 +24,19 @@ import { SiAndroidstudio } from "react-icons/si";
 
 
 function App() {
+  const [heroVisible, setHeroVisible] = useState(false);
+
   const skillsRef = useRef(null);
   const [skillsVisible, setSkillsVisible] = useState(false);
   const projectRef = useRef(null);
   const [projectVisible, setProjectVisible] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => setHeroVisible(true), 200); // delay 200ms
+  return () => clearTimeout(timer);
+}, []);
+
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -61,24 +70,32 @@ function App() {
 
   return (
     <>
-    <div 
-    id="home"
-    className="hero flex flex-col-reverse lg:flex-row items-center justify-between gap-6 lg:gap-10 p-4 lg:p-10 xl:gap-0 min-h-[70vh]">
-          <img src="./assets/3.png" alt="Hero Image" className="w-[500px] " 
-          />
-        
+<div 
+  id="home"
+  className={`hero flex flex-col-reverse lg:flex-row items-center justify-between gap-6 lg:gap-10 p-4 lg:p-10 xl:gap-0 min-h-[70vh]
+    transition-all duration-1000 ease-out
+    ${heroVisible ? "opacity-100" : "opacity-0 translate-y-10"}`}
+>
+  <img
+    src="./assets/3.png"
+    alt="Hero Image"
+    className={`w-[500px] transition-all duration-1000 ease-out
+      ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-10"}`}
+  />
 
+  <div className={`text-left max-w-lg transition-all duration-1000 ease-out
+    ${heroVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"}`}
+  >
+    <h1 className="text-8xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold mb-6">
+      Hi There, <br />I'm{" "}
+      <span className="text-blue-500 drop-shadow-sm">Majid</span>
+    </h1>
+    <p className="text-sm sm:text-base md:text-lg mb-4 lg:mb-6 opacity-80">
+      I am passionate about backend development, focusing on designing and implementing APIs and managing databases...
+    </p>
+  </div>
+</div>
 
-        <div className="text-left max-w-lg">
-        <h1 className="text-8xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold mb-6 ">Hi There, <br />I'm{" "}
-            <span className="text-blue-500 drop-shadow-sm">
-              Majid
-            </span></h1>
-        <p className="text-sm sm:text-base md:text-lg mb-4 lg:mb-6 opacity-80"> 
-          I am passionate about backend development, focusing on designing and implementing APIs and managing databases. I work with server-side logic and data structures to ensure efficient data flow, and I enjoy understanding how different backend components interact to support applications
-        </p>
-        </div>
-        </div>
 
 
 
@@ -100,95 +117,90 @@ function App() {
   <div className="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-7xl mx-auto">
-          {/* Backend Development */}
-          <div 
-              className={`p-6 rounded-xl shadow hover:shadow-lg 
-                transition-all duration-700 ease-out
-                 bg-blue-500/30 backdrop-blur-md text-white transform text-xl 
-                 ${skillsVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}
-                 style={{ transitionDelay: "100ms" }} 
-                `}>
-            <h3 className="text-xl font-semibold mb-7">Programming Languages</h3>
-           <div className="flex justify-evenly relative items-start">
-                {/* Kolom kiri */}
-                <ul className="list-disc list-inside space-y-2 sm:w-1/2 w-full sm:pr-6">
-                  <li className="flex items-center gap-2">
-                    <FaNodeJs /> Java
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <FaPhp /> PHP
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <SiDart /> Dart
-                  </li>
-                  
-                </ul>
+       
+          {/* Programming Languages */}
+<div 
+  className={`p-6 rounded-xl shadow hover:shadow-lg 
+    transition-all duration-700 ease-out
+    bg-blue-500/30 backdrop-blur-md text-white transform text-xl 
+    ${skillsVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
+  style={{ transitionDelay: "100ms" }}
+>
+  <h3 className="text-xl font-semibold mb-7">Programming Languages</h3>
+  
+ <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-6 gap-y-3 text-left">
+  {/* Kiri */}
+  <ul className="space-y-2">
+    <li className="flex items-center gap-2">
+      <FaNodeJs className="text-green-400 w-5 h-5 flex-shrink-0" /> Java
+    </li>
+    <li className="flex items-center gap-2">
+      <FaPhp className="text-indigo-300 w-5 h-5 flex-shrink-0" /> PHP
+    </li>
+    <li className="flex items-center gap-2">
+      <SiDart className="text-sky-400 w-5 h-5 flex-shrink-0" /> Dart
+    </li>
+  </ul>
 
-                
+  {/* Kanan */}
+  <ul className="space-y-2">
+    <li className="flex items-center gap-2">
+      <SiPython className="text-yellow-300 w-5 h-5 flex-shrink-0" /> Python
+    </li>
+    <li className="flex items-center gap-2">
+      <SiHtml5 className="text-orange-400 w-5 h-5 flex-shrink-0" /> HTML
+    </li>
+    <li className="flex items-center gap-2">
+      <SiJavascript className="text-yellow-400 w-5 h-5 flex-shrink-0" /> JavaScript
+    </li>
+  </ul>
+</div>
 
-                            {/* Kolom kanan */}
-                  <ul className="list-disc list-inside space-y-2 sm:w-1/2 w-full sm:pl-6">
-                    <li className="flex items-center gap-2">
-                      <SiPython /> Python
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <SiHtml5 /> HTML
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <SiJavascript className="flex-shrink-0 text-1xl" /> JavaScript
-                    </li>
-                  </ul>
-                </div>
-                </div>
+</div>
 
-          {/* Database & Data Management */}
-          <div className={`p-6 rounded-xl shadow hover:shadow-lg 
-          transition-all duration-700 ease-out
-          bg-blue-500/30 backdrop-blur-md transform text-xl
-           ${skillsVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}
-          `}
-          style={{ transitionDelay: "500ms" }}>
-            <h3 className="text-xl font-semibold mb-4">Frameworks & Backend Development</h3>
-            <ul className="list-disc list-inside space-y-2">
-              <li className="flex items-center gap-2">
-                <SiFlutter /> Flutter
-              </li>
-              <li className="flex items-center gap-2">
-                <SiLaravel /> Laravel
-              </li>
-              <li className="flex items-center gap-2">
-                <SiMysql /> MySQL / SSMS
-              </li>
+{/* Frameworks & Backend Development */}
+<div
+  className={`p-6 rounded-xl shadow hover:shadow-lg 
+    transition-all duration-700 ease-out
+    bg-blue-500/30 backdrop-blur-md transform text-xl
+    ${skillsVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
+  style={{ transitionDelay: "500ms" }}
+>
+  <h3 className="text-xl font-semibold mb-4">Frameworks & Backend Development</h3>
+  <ul className="list-disc list-inside space-y-2">
+    <li className="flex items-center gap-2">
+      <SiFlutter className="text-sky-400" /> Flutter
+    </li>
+    <li className="flex items-center gap-2">
+      <SiLaravel className="text-red-500" /> Laravel
+    </li>
+    <li className="flex items-center gap-2">
+      <SiMysql className="text-blue-400" /> MySQL / SSMS
+    </li>
+  </ul>
+</div>
 
-             
-              
-            </ul>
-          </div>
-
-          {/* Dev Tools & Practices */}
-          <div className={`p-6 rounded-xl shadow hover:shadow-lg 
-          transition-all duration-700 ease-out
-           bg-blue-500/30 backdrop-blur-md transform text-xl
-           ${skillsVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}
-          `}
-           style={{ transitionDelay: "900ms" }} 
-          >
-
-            <h3 className="text-xl font-semibold mb-4">Dev Tools & Practices</h3>
-            <ul className="list-disc list-inside space-y-2">
-              <li className="flex items-center gap-2">
-                <FaGithub /> Git / GitHub
-              </li>
-              <li className="flex items-center gap-2">
-                <   SiAndroidstudio /> AndroidStudio
-              </li>
-              <li className="flex items-center gap-2">
-                <img src={vscodeIcon} alt="VS Code" className="w-5 h-5" /> VS Code
-              </li>
-               
-            </ul>
-            
-          </div>
+{/* Dev Tools & Practices */}
+<div
+  className={`p-6 rounded-xl shadow hover:shadow-lg 
+    transition-all duration-700 ease-out
+    bg-blue-500/30 backdrop-blur-md transform text-xl
+    ${skillsVisible ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"}`}
+  style={{ transitionDelay: "900ms" }}
+>
+  <h3 className="text-xl font-semibold mb-4">Dev Tools & Practices</h3>
+  <ul className="list-disc list-inside space-y-2">
+    <li className="flex items-center gap-2">
+      <FaGithub className="text-gray-300" /> Git / GitHub
+    </li>
+    <li className="flex items-center gap-2">
+      <SiAndroidstudio className="text-green-500" /> AndroidStudio
+    </li>
+    <li className="flex items-center gap-2">
+      <img src={vscodeIcon} alt="VS Code" className="w-5 h-5" /> VS Code
+    </li>
+  </ul>
+</div>
           
         </div>
          </div>
@@ -284,6 +296,13 @@ function App() {
             ))}
             </div>
             </div>
+            {/* Footer */}
+<footer className=" bg-zinc-800">
+  <div className="max-w-7xl mx-auto text-center">
+    <p>&copy; 2025 Erwan Majid. All rights reserved.</p>
+  </div>
+</footer>
+
     </>
   )
 }

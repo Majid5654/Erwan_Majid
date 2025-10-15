@@ -71,7 +71,7 @@ const Navbar = () => {
         Project
       </button>
       </li>
-        <li><a href="#"className="sm:text-lg text-base font-medium">Contact</a></li>
+      
     </ul>
     </div>
   )
