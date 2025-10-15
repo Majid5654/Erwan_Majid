@@ -91,7 +91,7 @@ useEffect(() => {
       <span className="text-blue-500 drop-shadow-sm">Majid</span>
     </h1>
     <p className="text-sm sm:text-base md:text-lg mb-4 lg:mb-6 opacity-80">
-      I am passionate about backend development, focusing on designing and implementing APIs and managing databases...
+       I am passionate about backend development, focusing on designing and implementing APIs and managing databases. I work with server-side logic and data structures to ensure efficient data flow, and I enjoy understanding how different backend components interact to support applications
     </p>
   </div>
 </div>
